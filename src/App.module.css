@@ -1,0 +1,10 @@
+.app {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--c-bg);
+  padding-bottom: 90px;
+}

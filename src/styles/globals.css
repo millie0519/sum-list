@@ -1,0 +1,42 @@
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.css');
+
+:root {
+  --c-accent:       #1B7F4D;
+  --c-accent-dark:  #146139;
+  --c-accent-soft:  #E8F3EC;
+  --c-accent-tint:  #F2F8F4;
+
+  --c-bg:           #FFFFFF;
+  --c-surface-1:    #FBFBF9;
+  --c-surface-2:    #F4F4F2;
+  --c-surface-3:    #ECECE8;
+
+  --c-line:         #E7E7E2;
+  --c-line-strong:  #D6D6CF;
+  --c-line-grid:    #ECECE7;
+
+  --c-ink-1:        #161614;
+  --c-ink-2:        #4A4A45;
+  --c-ink-3:        #7C7C75;
+  --c-ink-4:        #ACACA4;
+
+  --c-danger:       #D6362B;
+  --c-danger-soft:  #FCEDEB;
+
+  --r-1: 6px;
+  --r-2: 10px;
+  --r-3: 14px;
+  --r-pill: 999px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Pretendard Variable', -apple-system, sans-serif;
+  background: var(--c-surface-2);
+  letter-spacing: -0.01em;
+}
