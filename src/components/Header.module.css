@@ -11,12 +11,10 @@
 }
 
 .menuBtn {
-  font-size: 20px;
   background: none;
   border: none;
   cursor: pointer;
-  color: var(--c-ink-1);
-  padding: 4px;
+  height: 26px;
 }
 
 .title {
@@ -25,6 +23,22 @@
   color: var(--c-ink-1);
   letter-spacing: -0.02em;
   text-align: center;
+}
+
+.titleInput {
+  display: block;
+  margin: 0 auto;
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--c-ink-1);
+  letter-spacing: -0.02em;
+  text-align: center;
+  border: none;
+  border-bottom: 2px solid var(--c-accent);
+  outline: none;
+  background: transparent;
+  font-family: inherit;
+  width: 120px;
 }
 
 .subtitle {
@@ -50,6 +64,20 @@
   cursor: pointer;
   color: var(--c-ink-2);
   font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--r-pill);
+}
+
+.newListBtn {
+  width: 32px;
+  height: 32px;
+  background: var(--c-accent-soft);
+  border: none;
+  cursor: pointer;
+  color: var(--c-accent);
+  font-size: 24px;
   display: flex;
   align-items: center;
   justify-content: center;

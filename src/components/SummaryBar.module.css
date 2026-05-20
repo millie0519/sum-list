@@ -1,6 +1,6 @@
 .bar {
   position: fixed;
-  bottom: 0;
+  bottom: 45px;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
@@ -38,18 +38,18 @@
   margin-right: 2px;
 }
 
-.saveBtn {
-  background: var(--c-accent);
-  color: #ffffff;
+.clearBtn {
+  background: var(--c-danger-soft);
+  color: var(--c-danger);
   border: none;
   border-radius: var(--r-2);
-  padding: 10px 20px;
-  font-size: 15px;
+  padding: 8px 12px;
+  font-size: 12px;
   font-weight: 600;
   font-family: inherit;
   cursor: pointer;
 }
 
-.saveBtn:active {
-  background: var(--c-accent-dark);
+.clearBtn:active {
+  opacity: 0.8;
 }

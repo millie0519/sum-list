@@ -1,0 +1,109 @@
+.screen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px;
+  border-bottom: 1px solid var(--c-line);
+  position: sticky;
+  top: 0;
+  background: var(--c-bg);
+  z-index: 10;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--c-ink-1);
+  letter-spacing: -0.02em;
+}
+
+.newBtn {
+  background: var(--c-accent);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--r-pill);
+  padding: 8px 14px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.listWrap {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  background: var(--c-bg);
+  border: 1px solid var(--c-line);
+  border-radius: var(--r-2);
+  cursor: pointer;
+}
+
+.card:hover {
+  background: var(--c-surface-1);
+}
+
+.cardMain {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.listName {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--c-ink-1);
+}
+
+.listCount {
+  font-size: 12px;
+  color: var(--c-ink-4);
+}
+
+.cardRight {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.listTotal {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--c-accent);
+  font-feature-settings: "tnum";
+}
+
+.deleteBtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 4px;
+  opacity: 0.4;
+}
+
+.deleteBtn:hover {
+  opacity: 1;
+}
+
+.empty {
+  text-align: center;
+  padding: 60px 0;
+  color: var(--c-ink-4);
+  font-size: 14px;
+  line-height: 2;
+}
