@@ -5,6 +5,7 @@ import ItemTable from './components/ItemTable'
 import SummaryBar from './components/SummaryBar'
 import Drawer from './components/Drawer'
 import ListScreen from './components/ListScreen'
+import SettingsSheet from './components/SettingsSheet'
 import styles from './App.module.css'
 
 const getDate = () => {
@@ -19,7 +20,13 @@ const defaultList = {
   id: Date.now(),
   name: '새 목록',
   items: [],
-  updatedAt: getDate()
+  updatedAt: getDate(),
+  settings: {
+    discount: false,
+    vat: false,
+    thousandSep: true,
+    currency: 'KRW'
+  }
 }
 
 function App() {
@@ -30,6 +37,7 @@ function App() {
   const [currentListId, setCurrentListId] = useState(parsed?.currentListId || defaultList.id)
   const [view, setView] = useState(parsed?.view || 'table')
   const [drawerOpen, setDrawerOpen] = useState(false)
+  const [settingsOpen, setSettingsOpen] = useState(false)
 
   const currentList = lists.find(l => l.id === currentListId) || lists[0]
   const items = currentList.items
@@ -60,10 +68,30 @@ function App() {
   }
 
   const handleNewList = () => {
-    const newList = { id: Date.now(), name: '새 목록', items: [], updatedAt: getDate() }
+    const newList = {
+      id: Date.now(),
+      name: '새 목록',
+      items: [],
+      updatedAt: getDate(),
+      settings: {
+        discount: false,
+        vat: false,
+        thousandSep: true,
+        currency: 'KRW'
+      }
+    }
     setLists([...lists, newList])
     setCurrentListId(newList.id)
     setView('table')
+  }
+
+  const handleUpdateSettings = (key, value) => {
+    setLists(lists.map(l =>
+      l.id === currentListId ? {
+        ...l,
+        settings: { ...l.settings, [key]: value }
+      } : l
+    ))
   }
 
   const handleRenameList = (name) => {
@@ -121,14 +149,22 @@ function App() {
             onNewList={handleNewList}
             onRenameList={handleRenameList}
             onMenuClick={() => setDrawerOpen(true)}
+            onSettingsClick={() => setSettingsOpen(true)}
           />
           <ItemTable
-            items={items}
-            onAddItem={handleAddItem}
-            onUpdateItem={handleUpdateItem}
-            onDeleteItem={handleDeleteItem}
+             items={items}
+             onAddItem={handleAddItem}
+             onUpdateItem={handleUpdateItem}
+             onDeleteItem={handleDeleteItem}
+             settings={currentList.settings}
           />
-          <SummaryBar items={items} onClearItems={handleClearItems} />
+          <SummaryBar items={items} onClearItems={handleClearItems} settings={currentList.settings} />
+          <SettingsSheet
+            isOpen={settingsOpen}
+            onClose={() => setSettingsOpen(false)}
+            settings={currentList.settings}
+            onUpdateSettings={handleUpdateSettings}
+          />
           <Footer />
         </>
       )}

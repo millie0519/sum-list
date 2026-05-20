@@ -1,7 +1,7 @@
 import styles from './ItemTable.module.css'
 import ItemRow from './ItemRow'
 
-function ItemTable({ items, onAddItem, onUpdateItem, onDeleteItem }) {
+function ItemTable({ items, onAddItem, onUpdateItem, onDeleteItem, settings }) {
   return (
     <div className={styles.container}>
       <table className={styles.table}>
@@ -22,6 +22,7 @@ function ItemTable({ items, onAddItem, onUpdateItem, onDeleteItem }) {
               index={index}
               onUpdateItem={onUpdateItem}
               onDeleteItem={onDeleteItem}
+              settings={settings}
             />
           ))}
         </tbody>

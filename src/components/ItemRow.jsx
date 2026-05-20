@@ -1,6 +1,11 @@
 import styles from './ItemRow.module.css'
 
-function ItemRow({ item, index, onUpdateItem, onDeleteItem }) {
+function ItemRow({ item, index, onUpdateItem, onDeleteItem, settings }) {
+  const fmt = (num) => {
+    const sep = settings?.thousandSep ?? true
+    return sep ? num.toLocaleString() : String(num)
+  }
+
   return (
     <tr className={styles.row}>
       <td>{index + 1}</td>
@@ -31,7 +36,7 @@ function ItemRow({ item, index, onUpdateItem, onDeleteItem }) {
         />
       </td>
       <td>
-        {(item.price * item.quantity).toLocaleString()}
+        {fmt(item.price * item.quantity)}
         <button className={styles.deleteBtn} onClick={() => onDeleteItem(item.id)} aria-label="삭제">×</button>
       </td>
     </tr>
