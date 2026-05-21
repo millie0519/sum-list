@@ -40,7 +40,7 @@ function Header({ listName, itemCount, onNewList, onRenameList, onMenuClick, onS
         <div className={styles.subtitle}>{itemCount}개 품목</div>
       </div>
       <div className={styles.right}>
-        <button className={styles.newListBtn} onClick={onNewList} aria-label="새 목록">+</button>
+        {/* <button className={styles.newListBtn} onClick={onNewList} aria-label="새 목록">+</button> */}
         <button className={styles.settingBtn} onClick={onSettingsClick} aria-label="설정">
           <svg width="26" height="26" viewBox="0 0 26 26" xmlns="http://www.w3.org/2000/svg">
             <path fill-rule="evenodd" clip-rule="evenodd"

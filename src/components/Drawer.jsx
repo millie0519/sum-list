@@ -1,4 +1,7 @@
 import styles from './Drawer.module.css'
+import { CURRENCIES } from '../constants'
+import { GrAdd } from "react-icons/gr";
+import { GrList } from "react-icons/gr";
 
 function Drawer({ isOpen, onClose, lists, currentListId, onSelectList, onNewList, onGoToList }) {
   const recentLists = [...lists].reverse().slice(0, 5)
@@ -13,26 +16,30 @@ function Drawer({ isOpen, onClose, lists, currentListId, onSelectList, onNewList
         </div>
 
         <button className={styles.newListBtn} onClick={() => { onNewList(); onClose(); }}>
-          + 새 목록
+          <GrAdd /> 새 목록
         </button>
 
         <button className={styles.goToListBtn} onClick={() => { onGoToList(); onClose(); }}>
-          📋 목록 전체보기
+          <GrList /> 목록 전체보기
         </button>
 
         <div className={styles.divider} />
 
         <div className={styles.listWrap}>
-          {recentLists.map(list => (
-            <div
-              key={list.id}
-              className={`${styles.listItem} ${list.id === currentListId ? styles.active : ''}`}
-              onClick={() => { onSelectList(list.id); onClose(); }}
-            >
-              <span className={styles.listName}>{list.name}</span>
-              <span className={styles.listCount}>{list.items.length}개</span>
-            </div>
-          ))}
+          {recentLists.map(list => {
+            const currency = CURRENCIES.find(c => c.code === (list.settings?.currency ?? 'KRW'))
+            const total = list.items.reduce((sum, item) => sum + item.price * item.quantity, 0)
+            return (
+              <div
+                key={list.id}
+                className={`${styles.listItem} ${list.id === currentListId ? styles.active : ''}`}
+                onClick={() => { onSelectList(list.id); onClose(); }}
+              >
+                <span className={styles.listName}>{list.name}</span>
+                <span className={styles.listCount}>{currency?.symbol}{total.toLocaleString()}</span>
+              </div>
+            )
+          })}
         </div>
       </div>
     </>

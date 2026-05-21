@@ -3,7 +3,15 @@ import styles from './ItemRow.module.css'
 function ItemRow({ item, index, onUpdateItem, onDeleteItem, settings }) {
   const fmt = (num) => {
     const sep = settings?.thousandSep ?? true
-    return sep ? num.toLocaleString() : String(num)
+    const fixed = Number(num.toFixed(2))
+    return sep ? fixed.toLocaleString() : String(fixed)
+  }
+
+  const calcAmount = () => {
+    let amt = item.price * item.quantity
+    if (settings?.discount) amt *= (1 - (item.discount || 0) / 100)
+    if (settings?.vat) amt *= (1 + (item.vat || 0) / 100)
+    return amt
   }
 
   return (
@@ -35,8 +43,48 @@ function ItemRow({ item, index, onUpdateItem, onDeleteItem, settings }) {
           placeholder="수량"
         />
       </td>
+      {settings?.discount && (
+        <td>
+          <input
+            className={styles.input}
+            type="text"
+            value={item.discount ? `${item.discount}%` : ''}
+            onChange={(e) => {
+              const val = e.target.value.replace('%', '').replace(/[^0-9.]/g, '')
+              onUpdateItem(item.id, 'discount', Number(val) || 0)
+            }}
+            onFocus={(e) => {
+              e.target.value = item.discount || ''
+            }}
+            onBlur={(e) => {
+              if (item.discount) e.target.value = `${item.discount}%`
+            }}
+            placeholder="0%"
+          />
+        </td>
+      )}
+      {settings?.vat && (
+        <td>
+          <input
+            className={styles.input}
+            type="text"
+            value={item.vat ? `${item.vat}%` : ''}
+            onChange={(e) => {
+              const val = e.target.value.replace('%', '').replace(/[^0-9.]/g, '')
+              onUpdateItem(item.id, 'vat', Number(val) || 0)
+            }}
+            onFocus={(e) => {
+              e.target.value = item.vat || ''
+            }}
+            onBlur={(e) => {
+              if (item.vat) e.target.value = `${item.vat}%`
+            }}
+            placeholder="0%"
+          />
+        </td>
+      )}
       <td>
-        {fmt(item.price * item.quantity)}
+        {fmt(calcAmount())}
         <button className={styles.deleteBtn} onClick={() => onDeleteItem(item.id)} aria-label="삭제">×</button>
       </td>
     </tr>

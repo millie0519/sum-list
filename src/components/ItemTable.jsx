@@ -11,6 +11,8 @@ function ItemTable({ items, onAddItem, onUpdateItem, onDeleteItem, settings }) {
             <th>품목</th>
             <th>단가</th>
             <th>수량</th>
+            {settings?.discount && <th>할인%</th>}
+            {settings?.vat && <th>부가세%</th>}
             <th>금액</th>
           </tr>
         </thead>

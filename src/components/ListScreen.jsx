@@ -1,4 +1,5 @@
 import styles from './ListScreen.module.css'
+import { CURRENCIES } from '../constants'
 import { BsTrash3 } from "react-icons/bs";
 
 function ListScreen({ lists, onSelectList, onNewList, onDeleteList }) {
@@ -16,32 +17,35 @@ function ListScreen({ lists, onSelectList, onNewList, onDeleteList }) {
             <p>새 목록을 만들어봐요!</p>
           </div>
         ) : (
-          lists.map(list => (
-            <div key={list.id} className={styles.card} onClick={() => onSelectList(list.id)}>
-              <div className={styles.cardMain}>
-                <span className={styles.listName}>{list.name}</span>
-                <span className={styles.listCount}>
-                {list.items.length}개 품목 · {list.updatedAt || '날짜 없음'}
-                </span>
+          lists.map(list => {
+            const currency = CURRENCIES.find(c => c.code === (list.settings?.currency ?? 'KRW'))
+            return (
+              <div key={list.id} className={styles.card} onClick={() => onSelectList(list.id)}>
+                <div className={styles.cardMain}>
+                  <span className={styles.listName}>{list.name}</span>
+                  <span className={styles.listCount}>
+                    {list.items.length}개 품목 · {list.updatedAt || '날짜 없음'}
+                  </span>
+                </div>
+                <div className={styles.cardRight}>
+                  <span className={styles.listTotal}>
+                    {currency?.symbol}{list.items.reduce((sum, item) => sum + item.price * item.quantity, 0).toLocaleString()}
+                  </span>
+                  <button
+                    className={styles.deleteBtn}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      if (window.confirm(`'${list.name}'을 삭제하시겠습니까?`)) {
+                        onDeleteList(list.id)
+                      }
+                    }}
+                  >
+                    <BsTrash3 />
+                  </button>
+                </div>
               </div>
-              <div className={styles.cardRight}>
-                <span className={styles.listTotal}>
-                  ₩{list.items.reduce((sum, item) => sum + item.price * item.quantity, 0).toLocaleString()}
-                </span>
-                <button
-                  className={styles.deleteBtn}
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    if (window.confirm(`'${list.name}'을 삭제하시겠습니까?`)) {
-                      onDeleteList(list.id)
-                    }
-                  }}
-                >
-                  <BsTrash3 />
-                </button>
-              </div>
-            </div>
-          ))
+            )
+          })
         )}
       </div>
     </div>

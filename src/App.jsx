@@ -53,7 +53,7 @@ function App() {
   }
 
   const handleAddItem = () => {
-    const newItem = { id: Date.now(), name: '', quantity: 1, price: 0 }
+    const newItem = { id: Date.now(), name: '', quantity: 1, price: 0, discount: 0, vat: 0 }
     updateItems([...items, newItem])
   }
 

@@ -17,7 +17,7 @@
   text-align: left;
 }
 
-.row td:nth-child(5) {
+.row td:last-child {
   font-weight: 700;
   padding-right: 8px;
 }
