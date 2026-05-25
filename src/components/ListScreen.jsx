@@ -1,13 +1,14 @@
 import styles from './ListScreen.module.css'
 import { CURRENCIES } from '../constants'
 import { BsTrash3 } from "react-icons/bs";
+import { GrAdd } from "react-icons/gr";
 
 function ListScreen({ lists, onSelectList, onNewList, onDeleteList }) {
   return (
     <div className={styles.screen}>
       <div className={styles.header}>
         <h1 className={styles.title}>내 목록</h1>
-        <button className={styles.newBtn} onClick={onNewList}>+ 새 목록</button>
+        <button className={styles.newBtn} onClick={onNewList}><GrAdd /> 새 목록</button>
       </div>
 
       <div className={styles.listWrap}>

@@ -1,3 +1,7 @@
+.row {
+  position: relative;
+}
+
 .row td {
   padding: 5px 0;
   font-size: 14px;
@@ -89,4 +93,45 @@
 
 .row:hover .deleteBtn {
   opacity: 1;
+}
+
+.rowSwiped .swipeDeleteBtn {
+  transform: translateX(0);
+}
+
+.swipeDeleteBtn {
+  display: none;
+}
+
+.swipeDeleteBtnVisible {
+  transform: translateX(0);
+}
+
+/* 모바일 — hover 버튼 숨김, 스와이프 버튼 보임 */
+@media (hover: none) {
+  .deleteBtn {
+    display: none;
+  }
+
+  .swipeDeleteBtn {
+    display: flex;
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 100%;
+    width: 60px;
+    background: var(--c-danger);
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    align-items: center;
+    justify-content: center;
+    transform: translateX(100%);
+    transition: transform 180ms ease-out;
+  }
+
+  .swipeDeleteBtnVisible {
+    transform: translateX(0);
+  }
 }

@@ -2,6 +2,7 @@ import styles from './Drawer.module.css'
 import { CURRENCIES } from '../constants'
 import { GrAdd } from "react-icons/gr";
 import { GrList } from "react-icons/gr";
+import { GrClose } from "react-icons/gr";
 
 function Drawer({ isOpen, onClose, lists, currentListId, onSelectList, onNewList, onGoToList }) {
   const recentLists = [...lists].reverse().slice(0, 5)
@@ -12,7 +13,7 @@ function Drawer({ isOpen, onClose, lists, currentListId, onSelectList, onNewList
       <div className={`${styles.drawer} ${isOpen ? styles.open : ''}`}>
         <div className={styles.header}>
           <span className={styles.title}>목록</span>
-          <button className={styles.closeBtn} onClick={onClose}>✕</button>
+          <button className={styles.closeBtn} onClick={onClose}><GrClose /></button>
         </div>
 
         <button className={styles.newListBtn} onClick={() => { onNewList(); onClose(); }}>

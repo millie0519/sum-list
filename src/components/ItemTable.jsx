@@ -1,5 +1,6 @@
 import styles from './ItemTable.module.css'
 import ItemRow from './ItemRow'
+import { GrFormAdd } from "react-icons/gr";
 
 function ItemTable({ items, onAddItem, onUpdateItem, onDeleteItem, settings }) {
   return (
@@ -31,7 +32,7 @@ function ItemTable({ items, onAddItem, onUpdateItem, onDeleteItem, settings }) {
       </table>
       <div className={styles.addRow}>
         <button className={styles.addBtn} onClick={onAddItem} aria-label="행 추가">
-          <span className={styles.addBtnIcon}>+</span>
+          <span className={styles.addBtnIcon}><GrFormAdd /></span>
           행 추가
         </button>
         <span className={styles.addHint}>탭하여 입력</span>

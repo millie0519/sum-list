@@ -1,11 +1,14 @@
 .footer {
-  position: absolute;
+  position: fixed;
   bottom: 0;
-  left: 0;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
+  max-width: 500px;
   padding: 16px;
   text-align: center;
   font-size: 10.5px;
   color: var(--c-ink-4);
   letter-spacing: 0.04em;
+  background-color: #fff;
 }
